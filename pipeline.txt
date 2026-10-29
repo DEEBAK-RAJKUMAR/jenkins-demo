@@ -2,27 +2,32 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/user/repository.git'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                echo 'Building application'
             }
         }
 
+        stage('Test') {
+            steps {
+                echo 'Testing application'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Build Successful!'
+            echo 'Pipeline completed successfully'
         }
+
         failure {
-            echo 'Build Failed!'
+            echo 'Pipeline failed'
         }
     }
 }
